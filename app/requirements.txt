@@ -1,0 +1,4 @@
+fastapi==0.75.2
+aiohttp==3.8.1
+uvicorn==0.17.6
+python-json-logger==2.0.2
