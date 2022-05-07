@@ -25,8 +25,7 @@ async def hello():
     return "Hello"
 
 
-# @app.post("/questions", response_model=Question)
-@app.post("/questions")
+@app.post("/questions", response_model=Question)
 async def add_questions(questions_num: int = 1, session: AsyncSession = Depends(get_session)):
     """Adds given number of questions to db"""
     if questions_num < 1:
