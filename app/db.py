@@ -1,3 +1,7 @@
+"""Module for working with db"""
+
+from collections.abc import AsyncGenerator
+
 from sqlmodel import SQLModel
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
@@ -10,11 +14,13 @@ engine = create_async_engine(
 
 
 async def init_db():
+    """Creates all tables"""
     async with engine.begin() as conn:
         await conn.run_sync(SQLModel.metadata.create_all)
 
 
-async def get_session() -> AsyncSession:
+async def get_session() -> AsyncSession | AsyncGenerator:
+    """Returns session connection to the db"""
     async_session = sessionmaker(
         engine, class_=AsyncSession, expire_on_commit=False
     )
