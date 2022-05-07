@@ -1,7 +1,7 @@
 """Models for API and db tables"""
 
 from datetime import datetime
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, UniqueConstraint
 
 
 class QuestionBase(SQLModel):
@@ -12,6 +12,8 @@ class QuestionBase(SQLModel):
 
 class Question(QuestionBase, table=True):
     """Model that represents question in the db"""
+    __table_args__ = (UniqueConstraint("question"),)
+
     id: int = Field(default=None, primary_key=True)
     created_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
 

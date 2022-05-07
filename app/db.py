@@ -3,8 +3,10 @@
 from collections.abc import AsyncGenerator
 
 from sqlmodel import SQLModel
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+
 
 engine = create_async_engine(
     'postgresql+asyncpg://bewise:bewise@postgres/bewisedb',
