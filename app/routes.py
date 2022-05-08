@@ -19,12 +19,6 @@ async def on_startup():
     await init_db()
 
 
-@app.get("/hello/", response_model=str)
-async def hello():
-    """Test function"""
-    return "Hello"
-
-
 @app.post("/questions", response_model=Question)
 async def add_questions(questions_num: int = 1, session: AsyncSession = Depends(get_session)):
     """Adds given number of questions to db"""
