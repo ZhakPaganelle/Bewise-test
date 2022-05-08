@@ -8,7 +8,6 @@ services:
       - "5000:5000"
     networks:
       - postgres
-#    network_mode: "host"
 
   postgres:
     container_name: postgres_container
