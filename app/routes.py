@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.dialects.postgresql import insert
 
 from db import init_db, get_session
-from models import Question
+from models import Question, QuestionRequest
 from questions_parser import get_questions
 
 app = FastAPI()
@@ -20,8 +20,9 @@ async def on_startup():
 
 
 @app.post("/questions", response_model=Question)
-async def add_questions(questions_num: int = 1, session: AsyncSession = Depends(get_session)):
+async def add_questions(questions: QuestionRequest, session: AsyncSession = Depends(get_session)):
     """Adds given number of questions to db"""
+    questions_num = questions.questions_num
     if questions_num < 1:
         return await get_last_question(session)
 
